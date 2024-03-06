@@ -24,7 +24,7 @@ public class StackImplementation<E> implements StackInterface<E> {
     */
    public StackImplementation() throws StackAllocationException {
       // TODO: call the constructor with size parameter with default size of 10.
-      
+      this(DEFAULT_STACK_SIZE);
    }
 
    /** TODO: Implement so that
@@ -35,49 +35,90 @@ public class StackImplementation<E> implements StackInterface<E> {
     * @throws StackAllocationException If cannot allocate room for the internal array.
     */
    public StackImplementation(int capacity) throws StackAllocationException {
-      
+      if (capacity<2){
+         throw  new StackAllocationException("Capacity must greater than 2");
+      }
+      try {
+         itemArray = new Object[capacity];
+         this.capacity = capacity;
+         currentIndex = -1;
+      } catch (OutOfMemoryError e) {
+         throw new StackAllocationException("Failed to allocate memory for the stack.");
+      }
    }
 
    @Override
    public int capacity() {
       // TODO: Implement this
-      
+      return capacity;
    }
 
    @Override
    public void push(E element) throws StackAllocationException, NullPointerException {
       // TODO: Implement this
-               
+      if (element == null){
+         throw new  NullPointerException("The element to push can't be null");
+      }
+      //Beyond capacity, create a new array twice the size of the original array
+      //then copy the data from the original array to the new array
+      if (currentIndex >= capacity-1){
+         try {
+            int newCapacity = 2 * capacity;
+            Object [] newArray = new Object[newCapacity];
+            for (int i=0;i<capacity;i++){
+               newArray[i] = itemArray[i];
+            };
+            itemArray = newArray;
+            capacity = newCapacity;
+         } catch (OutOfMemoryError e) {
+            throw new StackAllocationException("Failed to allocate more room for the stack.");
+         }
+      }
+      //Normal push operation
+      itemArray[currentIndex+1] = element;
+      currentIndex++;
    }
 
    @SuppressWarnings("unchecked")
    @Override
    public E pop() throws StackIsEmptyException {
-      
+      if (currentIndex==-1){
+         throw new StackIsEmptyException("There's no data in the stack");
+      }
+      Object popElement = itemArray[currentIndex];
+      currentIndex--;
+      return (E) popElement;
    }
 
    @SuppressWarnings("unchecked")
    @Override
    public E peek() throws StackIsEmptyException {
-      
+      if (currentIndex==-1){
+         throw new StackIsEmptyException("There's no data in the stack");
+      }
+      Object peekElement = itemArray[currentIndex];
+      return (E) peekElement;
    }
 
    @Override
    public int size() {
       // TODO: Implement this
-      
+      return currentIndex+1;
    }
 
    @Override
    public void clear() {
       // TODO: Implement this
-      
+      currentIndex = -1;
    }
 
    @Override
    public boolean isEmpty() {
       // TODO: Implement this
-      
+      if (currentIndex==-1){
+         return true;
+      }
+      return false;
    }
 
    @Override
