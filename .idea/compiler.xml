@@ -7,24 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="05-binsearch" />
-        <module name="00-init" />
+        <module name="booksandwords" />
         <module name="04-1-stack (1)" />
+        <module name="00-init" />
+        <module name="04-1-stack (2)" />
         <module name="04-1-stack" />
+        <module name="04-2-queue (2)" />
         <module name="04-2-queue (1)" />
         <module name="04-2-queue" />
-        <module name="01-arrays" />
         <module name="67-phonebook" />
+        <module name="01-arrays" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="00-init" target="15" />
-      <module name="01-arrays" target="17" />
-      <module name="04-1-stack" target="17" />
-      <module name="04-1-stack (1)" target="17" />
-      <module name="04-2-queue" target="15" />
-      <module name="04-2-queue (1)" target="15" />
-      <module name="05-binsearch" target="17" />
-      <module name="67-phonebook" target="18" />
-    </bytecodeTargetLevel>
   </component>
 </project>

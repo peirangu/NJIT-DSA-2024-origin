@@ -1,9 +1,6 @@
-package oy.tol.tra;
+package oy.tol.tira.books;
 
-import java.net.HttpURLConnection;
-import java.net.IDN;
-
-public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary<K, V> {
+public class KeyValueHashTable<K extends Comparable<K>, V extends Comparable<V>> implements Dictionary<K, V> {
 
     // This should implement a hash table.
 
@@ -112,7 +109,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
     }
 
     @Override
-    @java.lang.SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Pair<K,V> [] toSortedArray() {
         Pair<K, V> [] sorted = (Pair<K,V>[])new Pair[count];
         int newIndex = 0;
@@ -148,7 +145,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         int newCapacity = (int)(count * (1.0 / LOAD_FACTOR));
 		    if (newCapacity < values.length) {
 			      reallocate(newCapacity);
-		    } 
+		    }
     }
 
     private int calculateIndexByHC(int hashCode,K key){
@@ -189,5 +186,4 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         }
         return hash;
     }
- 
 }
