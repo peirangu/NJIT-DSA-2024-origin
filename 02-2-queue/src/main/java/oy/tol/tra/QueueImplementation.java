@@ -86,7 +86,7 @@ public class QueueImplementation<E> implements QueueInterface<E>{
             throw new QueueIsEmptyException("There's no data in the queue");
         }
         Object dequeueElement = itemArray[head];
-
+        itemArray[head] = null;
         if (head == capacity-1){
             head = 0;
         }else {
