@@ -132,6 +132,8 @@ public class BSTBookImplementation implements Book {
         System.out.println("Count of words to ignore:    " + filter.ignoreWordCount());
         System.out.println("Ignored words count:      " + ignoredWordsTotal);
         System.out.println("How many times the inner loop rolled: " + loopCount);
+        System.out.println("\nInformation for BST implementation");
+        System.out.println(words.getStatus());
     }
 
     @Override
