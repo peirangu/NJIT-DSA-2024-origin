@@ -82,7 +82,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V extends Comparable<V>>
         // if index was taken by different Person (collision), get new hash and index,
         // insert into table when the index has a null in it,
         // return true if existing Person updated or new Person inserted.
-        int hashCode = hashCode(key);
+        int hashCode = key.hashCode();
         int index = calculateIndexByHC(hashCode,key);
         if(index == -1){
             return false;
@@ -100,7 +100,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V extends Comparable<V>>
         // Remember to check for null.
         if (null==key) throw new IllegalArgumentException("Person to find cannot be null");
         // Must use same method for computing index as add method
-        int hashCode = hashCode(key);
+        int hashCode = key.hashCode();
         int index = getIndexByHC(hashCode,key);
         if (index == -1){
             return null;
@@ -178,12 +178,5 @@ public class KeyValueHashTable<K extends Comparable<K>, V extends Comparable<V>>
         return -1;
     }
 
-    private int hashCode(K key) {
-        int hash = 0;
-        String keyString = key.toString();
-        for (int i = 0; i < keyString.length(); i++) {
-            hash = 31 * hash + keyString.charAt(i);
-        }
-        return hash;
-    }
+
 }
